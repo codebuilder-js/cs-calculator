@@ -1,9 +1,9 @@
 using System;
 class Calculator {
   static void Main() {
-    int num1;
-    int num2;
-    int result;
+    float num1;
+    float num2;
+    float result;
     string operatorChoice;
     string calculateAgain;
      
@@ -13,10 +13,10 @@ class Calculator {
         Console.WriteLine("Welcome to the calculator program!");
         
         Console.Write("Enter the first number: ");
-        num1 = Convert.ToInt32(Console.ReadLine());
+        num1 = float.Parse(Console.ReadLine());
         
         Console.Write("Enter the second number: ");
-        num2 = Convert.ToInt32(Console.ReadLine());
+        num2 = float.Parse(Console.ReadLine());
         
         Console.Write("Enter the operator (+, -, *, /): ");
         operatorChoice = Console.ReadLine();
@@ -35,8 +35,14 @@ class Calculator {
                 Console.WriteLine(num1 + " * " + num2 + " = " + result);
                 break;
             case "/":
-                result = num1 / num2;
-                Console.WriteLine(num1 + " / " + num2 + " = " + result);
+                result = num2 == 0 ? float.NaN : num1 / num2;
+                
+                if(float.IsNaN(result)) {
+                    Console.WriteLine("Cannot divide by 0!");
+                } else {
+                    Console.WriteLine(num1 + " / " + num2 + " = " + result);
+                }
+                
                 break;
             default:
                 Console.WriteLine("Invalid caracter, type again...");
